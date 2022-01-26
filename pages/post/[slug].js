@@ -3,12 +3,12 @@ import imageUrlBuilder from "@sanity/image-url";
 import { useState, useEffect } from "react";
 import styles from "../../styles/post.module.css";
 import BlockContent from "@sanity/block-content-to-react";
-export const Post = ({ title, body, image,projectId,dataset }) => {
+export const Post = ({ title, body, image, projectId, dataset }) => {
   const [imageUrl, setImageUrl] = useState(null);
   useEffect(() => {
     const imgBuilder = imageUrlBuilder({
       projectId,
-      dataset
+      dataset,
     });
     setImageUrl(imgBuilder.image(image));
   }, [image]);
@@ -23,6 +23,8 @@ export const Post = ({ title, body, image,projectId,dataset }) => {
   );
 };
 export const getServerSideProps = async (ctx) => {
+  const projectId = process.env.PROJECT_ID;
+  const dataset = process.env.PROJECT_DATASET;
   const postSlug = ctx.query.slug;
   if (!postSlug) {
     return {
@@ -32,7 +34,7 @@ export const getServerSideProps = async (ctx) => {
   const query = encodeURIComponent(
     `*[_type=="post" && slug.current=="${postSlug}"]`
   );
-  const url = `https://xa6w1iw2.api.sanity.io/v1/data/query/production?query=${query}`;
+  const url = `https://${projectId}.api.sanity.io/v1/data/query/${dataset}?query=${query}`;
   const resp = await fetch(url).then((res) => res.json());
   const post = resp.result[0];
   if (!post) {
@@ -43,8 +45,8 @@ export const getServerSideProps = async (ctx) => {
         body: post.body,
         title: post.title,
         image: post.mainImage,
-        projectId:process.env.PROJECT_ID,
-        dataset: process.env.PROJECT_DATASET,
+        projectId,
+        dataset,
       },
     };
   }
