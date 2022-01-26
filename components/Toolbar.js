@@ -4,7 +4,6 @@ import {useRouter} from 'next/router';
 import styles from '../styles/Toolbar.module.css'
 import logo from '../images/logo.png'
 function Toolbar() {
-  console.log(logo)
   const router=useRouter()
   return <div className={styles.main}>
   <img onClick={()=>router.push('/')} className={styles.logo} src={logo.src} alt='Keplogs' />

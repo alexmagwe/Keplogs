@@ -16,3 +16,16 @@
     text-align:justify;
     letter-spacing: 1.5px;
 }
+@media screen and (max-width:600px){
+    .main{
+        width:80%;
+    }
+.main p{
+    font-size:18px;
+    line-height:40px;
+    letter-spacing:normal;
+}
+.mainImage{
+    width:100%;
+}
+}

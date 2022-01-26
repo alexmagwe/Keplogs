@@ -20,7 +20,6 @@ export default function Home({ posts, projectId, dataset }) {
       }))
     );
   }, [posts]);
-  console.log(posts);
   return (
     <div className={styles.container}>
       <Head>

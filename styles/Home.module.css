@@ -17,8 +17,8 @@
 }
 .post{
   cursor:pointer;
-  min-width:30%;
-  margin:25px;
+  /* min-width:30%; */
+  margin:20px;
 }
 .postTitle{
   text-align: center;
