@@ -1,0 +1,18 @@
+.main{
+   margin:auto;
+   width:70%;
+}
+.mainImage{
+    width:50%;
+    display:block;
+    margin: auto;
+}
+.mainTitle{
+    text-align:center;
+}
+.main p{
+    font-size:24px;
+    line-height:45px;
+    text-align:justify;
+    letter-spacing: 1.5px;
+}
