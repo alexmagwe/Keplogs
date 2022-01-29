@@ -3,7 +3,8 @@
    width:70%;
 }
 .mainImage{
-    width:50%;
+    width:500px;
+    object-fit: contain;
     display:block;
     margin: auto;
 }

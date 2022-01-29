@@ -2,8 +2,19 @@
 import imageUrlBuilder from "@sanity/image-url";
 import { useState, useEffect } from "react";
 import styles from "../../styles/post.module.css";
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
+import { dracula } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import BlockContent from "@sanity/block-content-to-react";
 export const Post = ({ title, body, image, projectId, dataset }) => {
+  const serializers = {
+  types: {
+    code: (props) => (
+      <SyntaxHighlighter language={props.node.language || 'text'} style={dracula} >
+        {props.node.code}
+      </SyntaxHighlighter>
+    ),
+  },
+}
   const [imageUrl, setImageUrl] = useState(null);
   useEffect(() => {
     const imgBuilder = imageUrlBuilder({
@@ -18,7 +29,7 @@ export const Post = ({ title, body, image, projectId, dataset }) => {
       {imageUrl && (
         <img className={styles.mainImage} src={imageUrl} alt="loading..." />
       )}
-      <BlockContent blocks={body} />
+      <BlockContent blocks={body} serializers={serializers}/>
     </div>
   );
 };
